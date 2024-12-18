@@ -59,8 +59,12 @@ app.get('/validate-secret', (req, res) => {
     res.json({ valid });
 });
 
-app.get('/', (req, res) => {
+app.get('/docs', (req, res) => {
     res.sendFile(path.join(__dirname, 'docs.html'));
+});
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.listen(port, () => {
