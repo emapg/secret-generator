@@ -62,16 +62,27 @@
             <h2>Endpoints</h2>
             <h3>/generate-secret</h3>
             <p>Generates a random authentication secret.</p>
-            <p>Query Parameters:</p>
+            <p>Methods: GET, POST</p>
+            <p>Query/Body Parameters:</p>
             <ul>
                 <li><strong>length</strong> (optional): Length of the secret (default is 32).</li>
                 <li><strong>algorithm</strong> (optional): Algorithm for encoding (default is 'hex'). Options: 'hex', 'base64'.</li>
+                <li><strong>charset</strong> (optional): Character set to use. Options: 'alphanumeric', 'numeric', default is 'alphanumeric'.</li>
+            </ul>
+            <h3>/validate-secret</h3>
+            <p>Validates a given secret.</p>
+            <p>Query Parameters:</p>
+            <ul>
+                <li><strong>secret</strong> (required): The secret to validate.</li>
+                <li><strong>length</strong> (optional): Expected length of the secret.</li>
+                <li><strong>charset</strong> (optional): Character set to validate against. Options: 'alphanumeric', 'numeric'.</li>
             </ul>
         </section>
         <section>
             <h2>Examples</h2>
             <p>GET <code>/generate-secret</code></p>
             <p>GET <code>/generate-secret?length=64&algorithm=base64</code></p>
+            <p>GET <code>/validate-secret?secret=yourSecretHere&length=32&charset=alphanumeric</code></p>
         </section>
     </div>
 </body>
