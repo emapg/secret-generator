@@ -1,11 +1,16 @@
 {
-  "name": "nextjs-auth-secret-api",
+  "name": "auth-secret-generator",
   "version": "1.0.0",
-  "main": "api/auth-secret.js",
-  "license": "MIT",
+  "description": "A Node.js API to generate authentication secrets for a Next.js app deployed on Vercel.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
   "dependencies": {
-    "cors": "^2.8.5",
-    "crypto-random-string": "^6.1.0",
-    "dotenv": "^16.0.3"
-  }
+    "crypto": "^1.0.1",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "author": "Your Name",
+  "license": "MIT"
 }
