@@ -1,4 +1,4 @@
-import cryptoRandomString from 'crypto-random-string';
+import { randomBytes } from 'crypto';
 import Cors from 'cors';
 
 // Initialize CORS middleware
@@ -28,7 +28,7 @@ export default async function handler(req, res) {
     try {
       // Get the secret length from query params or use a default value
       const length = parseInt(req.query.length, 10) || parseInt(process.env.DEFAULT_SECRET_LENGTH, 10) || 32;
-      
+
       // Validate length
       if (length < 16 || length > 128) {
         return res.status(400).json({
@@ -37,8 +37,8 @@ export default async function handler(req, res) {
         });
       }
 
-      // Generate the secret
-      const secret = cryptoRandomString({ length, type: 'hex' });
+      // Generate the secret using Node.js crypto module
+      const secret = randomBytes(length / 2).toString('hex'); // Divide length by 2 because `randomBytes` generates bytes, and hex doubles the size
 
       res.status(200).json({
         success: true,
