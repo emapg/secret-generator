@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Generate authentication secrets easily with our secure and flexible Auth Secret Generator API. Customize length, algorithm, and character set with our responsive UI.">
+    <meta name="keywords" content="auth secret generator, authentication, security, API, secret generation, Node.js, Next.js, Vercel, responsive UI">
+    <meta name="author" content="Your Name">
+    <title>Auth Secret Generator</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f4f9;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .result {
+            margin-top: 20px;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Auth Secret Generator</h1>
+        <form id="secretForm">
+            <div class="form-group">
+                <label for="length">Length</label>
+                <input type="number" class="form-control" id="length" name="length" value="32">
+            </div>
+            <div class="form-group">
+                <label for="algorithm">Algorithm</label>
+                <select class="form-control" id="algorithm" name="algorithm">
+                    <option value="hex">Hex</option>
+                    <option value="base64">Base64</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="charset">Charset</label>
+                <select class="form-control" id="charset" name="charset">
+                    <option value="alphanumeric">Alphanumeric</option>
+                    <option value="numeric">Numeric</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Generate Secret</button>
+        </form>
+        <div class="result">
+            <h3>Generated Secret:</h3>
+            <p id="secret"></p>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#secretForm').on('submit', function(event) {
+                event.preventDefault();
+                const length = $('#length').val();
+                const algorithm = $('#algorithm').val();
+                const charset = $('#charset').val();
+
+                $.get(`/generate-secret?length=${length}&algorithm=${algorithm}&charset=${charset}`, function(data) {
+                    $('#secret').text(data.secret);
+                }).fail(function() {
+                    $('#secret').text('Error generating secret.');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
