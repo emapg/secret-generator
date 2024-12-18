@@ -2,17 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/auth-secret.js",
+      "src": "index.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
-      "src": "/api/auth-secret",
-      "dest": "api/auth-secret.js"
+      "src": "/(.*)",
+      "dest": "index.js"
     }
-  ],
-  "env": {
-    "DEFAULT_SECRET_LENGTH": "32"
-  }
+  ]
 }
